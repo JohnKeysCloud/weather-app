@@ -1,6 +1,6 @@
 # weatherApp 🌡️
 
-[![weatherApp-demo](https://github.com/JohnKeysCloud/weather-app/assets/90482169/13f21d57-5dff-4347-bc73-29797494be19)](https://johnkeyscloud.github.io/weather-app/))
+[![weatherApp-demo](https://github.com/JohnKeysCloud/weather-app/assets/90482169/13f21d57-5dff-4347-bc73-29797494be19)](https://johnkeyscloud.github.io/weather-app/)
 
 A weather app built <a href="https://www.theodinproject.com/lessons/node-path-javascript-weather-app" target="_blank">The Odin Project</a>.
 
