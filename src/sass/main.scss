@@ -1,0 +1,241 @@
+@import './cyclone-reset.scss';
+@import './keyframes.scss';
+@import '~hover.css/css/hover-min.css';
+
+:root {
+  --background-body: var(--background-night);
+  --color-text-primary: var(--color-text-primary-night);
+
+  // ? Night 
+  --background-night: linear-gradient(to bottom, rgba(68,69,121,1), rgb(27, 27, 54));
+  --color-text-primary-night: whitesmoke;
+  
+  // ? Day (If I wanted to implement a day/night cycle)
+  --background-day: white;
+  --color-text-primary-day: black;
+
+  // ? use for cyclone studios site to create background dependent
+  // ? on local conditions and time:
+  // * https://www.weatherapi.com/docs/weather_conditions.json
+}
+
+body {
+  background: var(--background-body);
+  color: var(--color-text-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.813rem;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: space-between;
+  margin-inline: auto;
+  max-width: 999px;
+}
+
+main {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+button:not(#search-button) {
+  border: 1px solid var(--color-text-primary);
+  border-radius: 100vw;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  position: relative;
+
+  &::before {
+    background-color: rgba(0, 0, 0, 0.333);
+    border-radius: inherit;
+    content: '';
+    height: 100%;
+    inset: auto 0 0 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 222ms ease-in-out;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+#weather-info > *:not(.weather-info-temperature, #unit-button),
+#weather-details > * {
+  margin-bottom: 0.5rem;
+}
+
+#weather-details {
+  .label-container {
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+#unit-button,
+.weather-info-temperature {
+  margin-bottom: 1.5rem;
+}
+
+#cyclone-logo-section {
+  position: absolute;
+  display: grid;
+  place-items: start end;
+  inset: 0;
+  z-index: -1;
+
+  #cyclone-logo {
+    aspect-ratio: 1 / 1;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.666));
+    opacity: 0.1;
+    width: 100%;
+  }
+}
+
+#search-box {
+  border-bottom: 1px solid white;
+  position: relative;
+  
+  input[type=search] {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+
+    &::placeholder {
+      color: white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  #search-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: opacity 66ms ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+#search-box-error {
+  display: block;
+  bottom: -100%;
+  font-size: 0.75rem;
+  position: absolute;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+#weather-details {
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+}
+
+#forecast-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: space-between;
+  position: relative;
+
+  #daily-data-container {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #hourly-forecast-container {
+    #hourly-data-container {
+      background: rgba(0, 0, 0, 0.333);
+      border-radius: 1rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between;
+      overflow: scroll;
+      padding: 1rem;
+
+    }
+
+    &::before {
+      bottom: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      content: '⇜ SCROLL ⇝';
+      position: absolute;
+    }
+  }
+}
+
+.day-container {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.333);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  
+  .day-data-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .day-information-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+
+      & > * {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.hour-container {
+  align-items: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+[data-type=temperature] {
+  font-weight: bold;
+  font-size: 1rem;
+  text-wrap: nowrap;
+}

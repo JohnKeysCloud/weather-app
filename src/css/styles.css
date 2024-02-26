@@ -1,0 +1,507 @@
+@charset "UTF-8";
+@import '~hover.css/css/hover-min.css';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  text-rendering: optimizeSpeed;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h3,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  image-rendering: crisp-edges;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+picture img {
+  object-fit: contain;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+dfn {
+  font-style: italic;
+  margin-right: 3px;
+}
+
+abbr[title],
+dfn[title] {
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+em {
+  font-style: italic;
+}
+
+.accessibility {
+  height: 1px;
+  left: -9999px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* * UTILITIES */
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+             supported by Chrome, Edge, Opera and Firefox */
+}
+
+input[type=checkbox] {
+  margin: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+  }
+  90% {
+    grid-template-rows: 1fr;
+    opacity: 0.5;
+    transform: scale(1);
+    visibility: visible;
+  }
+  100% {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+@keyframes fade-out {
+  0% {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+  10% {
+    grid-template-rows: 1fr;
+    opacity: 0.5;
+    transform: scale(1);
+    visibility: visible;
+  }
+  100% {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+:root {
+  --background-body: var(--background-night);
+  --color-text-primary: var(--color-text-primary-night);
+  --background-night: linear-gradient(to bottom, rgba(68,69,121,1), rgb(27, 27, 54));
+  --color-text-primary-night: whitesmoke;
+  --background-day: white;
+  --color-text-primary-day: black;
+}
+
+body {
+  background: var(--background-body);
+  color: var(--color-text-primary);
+  font-family: "Space Mono", monospace;
+  font-size: 0.813rem;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: space-between;
+  margin-inline: auto;
+  max-width: 999px;
+}
+
+main {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+button:not(#search-button) {
+  border: 1px solid var(--color-text-primary);
+  border-radius: 100vw;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  position: relative;
+}
+button:not(#search-button)::before {
+  background-color: rgba(0, 0, 0, 0.333);
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  inset: auto 0 0 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 222ms ease-in-out;
+  width: 100%;
+  z-index: -1;
+}
+button:not(#search-button):hover::before {
+  transform: scaleX(1);
+}
+
+#weather-info > *:not(.weather-info-temperature, #unit-button),
+#weather-details > * {
+  margin-bottom: 0.5rem;
+}
+
+#weather-details .label-container {
+  align-items: center;
+  display: flex;
+  justify-content: start;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+#unit-button,
+.weather-info-temperature {
+  margin-bottom: 1.5rem;
+}
+
+#cyclone-logo-section {
+  position: absolute;
+  display: grid;
+  place-items: start end;
+  inset: 0;
+  z-index: -1;
+}
+#cyclone-logo-section #cyclone-logo {
+  aspect-ratio: 1/1;
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.666));
+  opacity: 0.1;
+  width: 100%;
+}
+
+#search-box {
+  border-bottom: 1px solid white;
+  position: relative;
+}
+#search-box input[type=search] {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+#search-box input[type=search]::placeholder {
+  color: white;
+}
+#search-box input[type=search]:focus {
+  outline: none;
+}
+#search-box #search-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: opacity 66ms ease-in-out;
+}
+#search-box #search-button:hover {
+  opacity: 0.7;
+}
+
+#search-box-error {
+  display: block;
+  bottom: -100%;
+  font-size: 0.75rem;
+  position: absolute;
+}
+#search-box-error.hidden {
+  display: none;
+}
+
+#weather-details {
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+}
+
+#forecast-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: space-between;
+  position: relative;
+}
+#forecast-content-container #daily-data-container {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+#forecast-content-container #hourly-forecast-container #hourly-data-container {
+  background: rgba(0, 0, 0, 0.333);
+  border-radius: 1rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  overflow: scroll;
+  padding: 1rem;
+}
+#forecast-content-container #hourly-forecast-container::before {
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "⇜ SCROLL ⇝";
+  position: absolute;
+}
+
+.day-container {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.333);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+.day-container .day-data-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.day-container .day-data-container .day-information-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+.day-container .day-data-container .day-information-container > * {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hour-container {
+  align-items: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+[data-type=temperature] {
+  font-weight: bold;
+  font-size: 1rem;
+  text-wrap: nowrap;
+}
+
+/*# sourceMappingURL=styles.css.map */

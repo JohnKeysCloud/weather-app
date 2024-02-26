@@ -1,0 +1,6 @@
+.env
+node_modules/
+gitpush.sh
+gitpush.js
+todo.md
+displaySome.js
